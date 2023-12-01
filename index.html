@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat en Tiempo Real</title>
+</head>
+<body>
+
+<div id="chat">
+    <div id="mensaje-container"></div>
+    <input type="text" id="mensaje-input" placeholder="Escribe tu mensaje">
+    <button onclick="enviarMensaje()">Enviar</button>
+</div>
+
+<!-- Agrega la biblioteca de Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"></script>
+
+<script>
+  // Configura la conexión con tu proyecto de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyB6igWT7Yjhyba6zMDRSjZWBYPRHcy5Pcs",
+    authDomain: "mychat-a4b48.firebaseapp.com",
+    projectId: "mychat-a4b48",
+    storageBucket: "mychat-a4b48.appspot.com",
+    messagingSenderId: "34313160517",
+    appId: "1:34313160517:web:c330809c3e1e696cf7e02c",
+    measurementId: "G-7RY9LWQL95"
+  };
+
+  // Inicializa Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Obtiene una referencia a la base de datos
+  const database = firebase.database();
+
+  // Referencia a los mensajes en la base de datos
+  const mensajesRef = database.ref("mensajes");
+
+  // Muestra los mensajes existentes
+  mensajesRef.on("child_added", function(snapshot) {
+    const mensaje = snapshot.val();
+    mostrarMensaje(mensaje.nombre, mensaje.texto);
+  });
+
+  // Función para mostrar un mensaje en el contenedor
+  function mostrarMensaje(nombre, texto) {
+    const mensajeHTML = `<p><strong>${nombre}:</strong> ${texto}</p>`;
+    document.getElementById("mensaje-container").innerHTML += mensajeHTML;
+  }
+
+  // Función para enviar un mensaje
+  function enviarMensaje() {
+    const nombre = prompt("Ingresa tu nombre:");
+    const texto = document.getElementById("mensaje-input").value;
+
+    // Guarda el mensaje en la base de datos
+    mensajesRef.push({
+      nombre: nombre,
+      texto: texto
+    });
+
+    // Borra el contenido del campo de entrada
+    document.getElementById("mensaje-input").value = "";
+  }
+</script>
+
+</body>
+</html>
