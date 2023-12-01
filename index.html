@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,11 @@
 
 <div id="chat">
     <div id="mensaje-container"></div>
-    <input type="text" id="mensaje-input" placeholder="Escribe tu mensaje">
-    <button onclick="enviarMensaje()">Enviar</button>
+    <form id="formulario-mensaje">
+        <input type="text" id="nombre-input" placeholder="Tu nombre">
+        <input type="text" id="mensaje-input" placeholder="Escribe tu mensaje">
+        <button type="submit">Enviar</button>
+    </form>
 </div>
 
 <!-- Agrega la biblioteca de Firebase -->
@@ -50,9 +53,15 @@
     document.getElementById("mensaje-container").innerHTML += mensajeHTML;
   }
 
+  // Evento de envío del formulario
+  document.getElementById("formulario-mensaje").addEventListener("submit", function(event) {
+    event.preventDefault();
+    enviarMensaje();
+  });
+
   // Función para enviar un mensaje
   function enviarMensaje() {
-    const nombre = prompt("Ingresa tu nombre:");
+    const nombre = document.getElementById("nombre-input").value;
     const texto = document.getElementById("mensaje-input").value;
 
     // Guarda el mensaje en la base de datos
@@ -61,7 +70,8 @@
       texto: texto
     });
 
-    // Borra el contenido del campo de entrada
+    // Borra el contenido de los campos de entrada
+    document.getElementById("nombre-input").value = "";
     document.getElementById("mensaje-input").value = "";
   }
 </script>
