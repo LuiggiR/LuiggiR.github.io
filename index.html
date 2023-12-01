@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat en Tiempo Real</title>
+
+    <!-- Agrega la biblioteca de Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"></script>
 </head>
 <body>
 
@@ -15,10 +19,6 @@
         <button type="submit">Enviar</button>
     </form>
 </div>
-
-<!-- Agrega la biblioteca de Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-database.js"></script>
 
 <script>
   // Configura la conexión con tu proyecto de Firebase
@@ -35,45 +35,7 @@
   // Inicializa Firebase
   firebase.initializeApp(firebaseConfig);
 
-  // Obtiene una referencia a la base de datos
-  const database = firebase.database();
-
-  // Referencia a los mensajes en la base de datos
-  const mensajesRef = database.ref("mensajes");
-
-  // Muestra los mensajes existentes
-  mensajesRef.on("child_added", function(snapshot) {
-    const mensaje = snapshot.val();
-    mostrarMensaje(mensaje.nombre, mensaje.texto);
-  });
-
-  // Función para mostrar un mensaje en el contenedor
-  function mostrarMensaje(nombre, texto) {
-    const mensajeHTML = `<p><strong>${nombre}:</strong> ${texto}</p>`;
-    document.getElementById("mensaje-container").innerHTML += mensajeHTML;
-  }
-
-  // Evento de envío del formulario
-  document.getElementById("formulario-mensaje").addEventListener("submit", function(event) {
-    event.preventDefault();
-    enviarMensaje();
-  });
-
-  // Función para enviar un mensaje
-  function enviarMensaje() {
-    const nombre = document.getElementById("nombre-input").value;
-    const texto = document.getElementById("mensaje-input").value;
-
-    // Guarda el mensaje en la base de datos
-    mensajesRef.push({
-      nombre: nombre,
-      texto: texto
-    });
-
-    // Borra el contenido de los campos de entrada
-    document.getElementById("nombre-input").value = "";
-    document.getElementById("mensaje-input").value = "";
-  }
+  // Resto del código...
 </script>
 
 </body>
