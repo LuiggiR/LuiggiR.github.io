@@ -1,64 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title> 
+    <title>Documento</title> 
 </head>  
 <body>
-<form action="">
-<div>
-<label for="nombre">Nombre</label>
-<input type="text" id="nombre">
-</div>
-<div>
-<label for="mensaje">Mensaje</label>
-<textarea id="mensaje"></textarea>
-</div>
-<button type="button" id= "btnEnviar">Enviar</button>
-</form>
+    <form action="">
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre">
+        </div>
+        <div>
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje"></textarea>
+        </div>
+        <button type="button" id="btnEnviar">Enviar</button>
+    </form>
 
-<ul>
-    <li>
-        <b>Nombre: </b> Mensaje
-    </li>
-    <li>
-        <b>Nombre: </b> Mensaje
-    </li>
-</ul>
-   
-   import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    <ul>
+        <li>
+            <b>Nombre: </b> Mensaje
+        </li>
+        <li>
+            <b>Nombre: </b> Mensaje
+        </li>
+    </ul>
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyB6igWT7Yjhyba6zMDRSjZWBYPRHcy5Pcs",
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js"></script>
+    <script>
+        // Importar las funciones necesarias
+        import { initializeApp } from 'firebase/app';
+        import { getAnalytics } from 'firebase/analytics';
+
+        // Definir la configuración de Firebase
+        const firebaseConfig = {
+          apiKey: "AIzaSyB6igWT7Yjhyba6zMDRSjZWBYPRHcy5Pcs",
   authDomain: "mychat-a4b48.firebaseapp.com",
   projectId: "mychat-a4b48",
   storageBucket: "mychat-a4b48.appspot.com",
   messagingSenderId: "34313160517",
   appId: "1:34313160517:web:c330809c3e1e696cf7e02c",
   measurementId: "G-7RY9LWQL95"
-};
+        };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-    
- var txtNombre = document.getElementById(“nombre");
-var txtMensaje = document.getElementById(“mensaje");
-var btnEnviar = document. getElementById("btnEnviar”);
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        
+        var txtNombre = document.getElementById("nombre");
+        var txtMensaje = document.getElementById("mensaje");
+        var btnEnviar = document.getElementById("btnEnviar");
 
-btnEnviar.addEventListener(“click", function() {
-var nombre = txtNombre. value;
-alert (nombre:
-});
-
-   </script>
+        btnEnviar.addEventListener("click", function() {
+            var nombre = txtNombre.value;
+            alert(nombre);
+        });
+    </script>
 </body>
 </html>
+
 
 
 
